@@ -26,6 +26,14 @@
     display: flex;
     flex-direction: column;
   }
+  #tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  z-index: 0;        
+}
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -38,10 +46,23 @@
     gap: 10px;
     text-decoration: none;
   }
+ .lottie-file {
+  display: flex;
+  height: 77%;
+  width: 77%; 
+  margin-left: 150px;
+}
+    
+   
+    
+    
+  
   .hero-section {
     background-color: var(--pink-bg);
     padding: 60px 0;
     text-align: center;
+    position: relative;
+  z-index: 1;  
   }
   
   .tagline {
@@ -62,18 +83,18 @@
   
   .description {
     color: var(--gray);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 30px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1.3rem;
+    max-width: 1000px;
+    text-align:justify;
+    padding-left: 50px;
+    
   }
   
  .upload-section {
     background-color: var(--light);
     padding: 60px 0;
     text-align: center;
+    
 }
   
   .upload-container {
@@ -133,9 +154,7 @@
     box-shadow: 0 5px 15px rgba(247, 79, 158, 0.3);
     transform: translateY(-2px);
   }
-  .file-input {
-    display: none;
-  }
+  
   
   .info-text {
     margin-top: 20px;
@@ -450,6 +469,8 @@ button:disabled {
     color: var(--light);
     padding: 30px 0;
     margin-top: auto;
+     z-index: 1;  
+     position: relative;
   }
   
   .footer-content {

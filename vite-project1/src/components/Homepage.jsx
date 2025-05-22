@@ -1,4 +1,8 @@
-import React, { useRef, useState} from 'react';
+import  { useRef, useState, useCallback } from 'react';
+import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
+import Lottie from 'lottie-react';
+import myAnimation from '../animations/DataAnalysis.json';
 import './Homepage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBrain, faFileCsv,
@@ -17,6 +21,9 @@ import { Navbar } from '../navbar/Navbar';
 
 
 const Homepage = () => {
+   const particlesInit = useCallback(async engine => {
+    await loadFull(engine);
+  }, []);
   const fileInputRef = useRef(null); 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFileSelected, setIsFileSelected] = useState(false);
@@ -244,21 +251,69 @@ const Homepage = () => {
 
   return (
     <>
+    
     <Navbar/>
+    <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{  
+         fullScreen: { enable: true, zIndex: -1 }, 
+          background: { color: { value: "#000" } },
+          fpsLimit: 60,
+          interactivity: {
+            detectsOn: "canvas",
+            events: {
+              onHover: { enable: true, mode: "grab" },
+              onClick: { enable: true, mode: "push" },
+              resize: true
+            },
+            modes: {
+              grab: { distance: 200, links: { opacity: 0.5 } },
+              push: { quantity: 4 }
+            }
+          },
+          particles: {
+            number: { value: 60, density: { enable: true, area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.4 },
+            size: { value: { min: 1, max: 3 }, random: true },
+            links: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.3,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              outModes: { default: "bounce" }
+            }
+          },
+          detectRetina: true
+        }}
+      />
       <section className="hero-section">
+      
         <div className="container">
           <div className="tagline">Building agents for structured data</div>
           <h1 className="main-title">
             <span className="highlight">Deep Analysis</span> that transforms data into insights
           </h1>
+         <div className='lottie-file'>
+      <Lottie animationData={myAnimation} loop={true} />
           <p className="description">
+          
+      
             Deep Analysis is a powerful automated data analysis service designed to streamline the process of extracting insights from structured data. Using a system of intelligent agents powered by AI, it automatically explores CSV files, identifies key performance indicators (KPIs), generates visualizations, and produces comprehensive analytical reports.
-          </p>
-
-          <p className="description">
+           <br/>
+           <br/>
             We use internal AI agents to work with all kinds of structured data, requiring 0 human intervention throughout the entire analysis process.
           </p>
+          </div>
         </div>
+        
       </section>
       <section className="upload-section">
         <div className="container">
